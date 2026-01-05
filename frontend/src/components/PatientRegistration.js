@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ProgressBar from './ProgressBar';
-
+import {API_URL} from "../api";
 function PatientRegistration({ onRegister }) {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
@@ -162,7 +162,7 @@ function PatientRegistration({ onRegister }) {
         }
       };
 
-      const response = await axios.post('/api/auth/register/patient', dataToSend);
+      const response = await axios.post('${API_URL}/api/auth/register/patient', dataToSend);
       onRegister(response.data.user, response.data.token);
       navigate('/dashboard');
     } catch (err) {
